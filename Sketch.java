@@ -3,49 +3,68 @@ import processing.core.PImage;
 
 public class Sketch extends PApplet {
 
+  PImage imgBackground;
   PImage imgGooglyEyes;
 
   // x and y coordinate for the googly eyes
-  float fltGooglyEyesX = random(1, 50);
+  float fltGooglyEyesX = random(1, 70);
   float fltGooglyEyesY = random(50, 100);
 
   // googly eyes speed variables
-  float fltXSpeed = random(1, 5);
-  float fltYSpeed = random(1, 5);
-
-  // define colours
-  int black = color(0);
-  int white = color(255);
-  int magenta = color(255, 0, 255);
+  float fltXSpeed = (6);
+  float fltYSpeed = (6);
 
   public void settings() {
     size(400, 400);
   }
 
   public void setup() {
-    background(210, 255, 173);
+    // load background
+    imgBackground = loadImage("background.jpeg");
     // load googly eyes
-    imgGooglyEyes = loadImage ("googlyeyes.png");
+    imgGooglyEyes = loadImage("googlyeyes.png");
     // resize googly eyes
-    imgGooglyEyes.resize(100, 100);
+    imgGooglyEyes.resize(200, 200);
     imgGooglyEyes.resize(imgGooglyEyes.width/4, imgGooglyEyes.height/4);
   }
 
   public void draw() {
-    background(black);
+    // draw background
+    image(imgBackground, 0, 0);
 
     // draw googly eyes to move (animate)
-    image (imgGooglyEyes, fltGooglyEyesX, fltGooglyEyesY);
+    image(imgGooglyEyes, fltGooglyEyesX, fltGooglyEyesY);
 
     fltGooglyEyesX += fltXSpeed;
     fltGooglyEyesY += fltYSpeed;
 
+    // bounce googly eyes left and right
     if (fltGooglyEyesX > width - imgGooglyEyes.width || fltGooglyEyesX < 0) {
       fltXSpeed *= -1;
     }
-
+    // bounce googly eyes up and down
     if (fltGooglyEyesY > height - imgGooglyEyes.height || fltGooglyEyesY < 0) {
       fltYSpeed *= -1;
+    }
+
+    // draw a circle
+    float fltCircleX = (0);
+    float fltCircleY = (0);
+    float fltCircleXSpeed = (5);
+    float fltCircleYSpeed = (5);
+    ellipse (fltCircleX, fltCircleY, 50, 50);
+
+    fltCircleX = fltCircleX + fltCircleXSpeed;
+    fltCircleY = fltCircleY + fltCircleYSpeed;
+  
+    // bounce off left and right
+    if (fltCircleX < 0 || fltCircleX > width) {
+      fltCircleXSpeed = fltCircleXSpeed * -1;
+    }
+  
+    // bounce off top and bottom
+    if (fltCircleY < 0 || fltCircleY > height) {
+      fltCircleYSpeed = fltCircleYSpeed * -1;
     }
   }
 }
