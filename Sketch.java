@@ -3,16 +3,22 @@ import processing.core.PImage;
 
 public class Sketch extends PApplet {
 
-  PImage imgBackground;
-  PImage imgGooglyEyes;
+    PImage imgBackground;
+    PImage imgGooglyEyes;
 
   // x and y coordinate for the googly eyes
-  float fltGooglyEyesX = random(1, 70);
-  float fltGooglyEyesY = random(50, 100);
+    float fltGooglyEyesX = random(1, 70);
+    float fltGooglyEyesY = random(50, 100);
 
   // googly eyes speed variables
-  float fltXSpeed = (6);
-  float fltYSpeed = (6);
+   float fltXSpeed = (6);
+   float fltYSpeed = (6);
+
+  // initiate the variables for the circle
+    float fltCircleX = (200);
+    float fltCircleY = (100);
+    float fltCircleXSpeed = (5);
+    float fltCircleYSpeed = (5);
 
   public void settings() {
     size(400, 400);
@@ -47,13 +53,9 @@ public class Sketch extends PApplet {
       fltYSpeed *= -1;
     }
 
-    // draw a circle
-    float fltCircleX = (0);
-    float fltCircleY = (0);
-    float fltCircleXSpeed = (5);
-    float fltCircleYSpeed = (5);
-    ellipse (fltCircleX, fltCircleY, 50, 50);
-
+    // draw the circle
+    ellipse(fltCircleX, fltCircleY, 40, 40);
+    
     fltCircleX = fltCircleX + fltCircleXSpeed;
     fltCircleY = fltCircleY + fltCircleYSpeed;
   
