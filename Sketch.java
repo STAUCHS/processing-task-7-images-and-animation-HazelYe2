@@ -6,19 +6,21 @@ public class Sketch extends PApplet {
     PImage imgBackground;
     PImage imgGooglyEyes;
 
-  // x and y coordinate for the googly eyes
-    float fltGooglyEyesX = random(1, 70);
-    float fltGooglyEyesY = random(50, 100);
+    // x and y coordinate for the googly eyes
+    float angle = 0;
+    float centerX = 150;
+    float centerY = 150;
+    float radius = 100;
 
-  // googly eyes speed variables
-   float fltXSpeed = (6);
-   float fltYSpeed = (6);
+    // googly eyes speed variables
+    float fltXSpeed = 6;
+    float fltYSpeed = 6;
 
-  // initiate the variables for the circle
-    float fltCircleX = (200);
-    float fltCircleY = (100);
-    float fltCircleXSpeed = (5);
-    float fltCircleYSpeed = (5);
+    // initiate the variables for the circle
+    float fltCircleX = 200;
+    float fltCircleY = 100;
+    float fltCircleXSpeed = 5;
+    float fltCircleYSpeed = 5;
 
   public void settings() {
     size(400, 400);
@@ -38,24 +40,16 @@ public class Sketch extends PApplet {
     // draw background
     image(imgBackground, 0, 0);
 
+    // calculate the position of the googly eyes along a circular path
+    float x = centerX + cos(angle) * radius;
+    float y = centerY + sin(angle) * radius;
+
     // draw googly eyes to move (animate)
-    image(imgGooglyEyes, fltGooglyEyesX, fltGooglyEyesY);
-
-    fltGooglyEyesX += fltXSpeed;
-    fltGooglyEyesY += fltYSpeed;
-
-    // bounce googly eyes left and right
-    if (fltGooglyEyesX > width - imgGooglyEyes.width || fltGooglyEyesX < 0) {
-      fltXSpeed *= -1;
-    }
-    // bounce googly eyes up and down
-    if (fltGooglyEyesY > height - imgGooglyEyes.height || fltGooglyEyesY < 0) {
-      fltYSpeed *= -1;
-    }
+    image(imgGooglyEyes, x, y);
+    angle += 0.05;
 
     // draw the circle
     ellipse(fltCircleX, fltCircleY, 40, 40);
-    
     fltCircleX = fltCircleX + fltCircleXSpeed;
     fltCircleY = fltCircleY + fltCircleYSpeed;
   
